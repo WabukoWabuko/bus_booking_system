@@ -1,6 +1,7 @@
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from ratelimit.decorators import ratelimit  # Import ratelimit
 from .models import Schedule, Booking
 from .serializers import ScheduleSerializer, BookingSerializer
 
@@ -13,6 +14,7 @@ class BookingViewSet(viewsets.ModelViewSet):
     serializer_class = BookingSerializer
 
     @action(detail=False, methods=['post'])
+    @ratelimit(key='ip', rate='10/m', method='POST')  # Limit to 10 requests per minute per IP
     def book_seat(self, request):
         schedule_id = request.data['schedule_id']
         seat_number = request.data['seat_number']
