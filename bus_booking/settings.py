@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'djoser',
     'channels',
-    'booking',  
-    'payment',  
+    'booking',
+    'payment',
     'admin_panel',
 ]
 
