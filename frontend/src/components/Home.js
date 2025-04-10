@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 
 const Home = () => {
   const [origin, setOrigin] = useState('');
@@ -13,43 +15,50 @@ const Home = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <h2 className="text-center mb-4">Book Your Bus Ticket</h2>
-      <form onSubmit={handleSearch} className="row g-3">
-        <div className="col-md-4">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Origin"
-            value={origin}
-            onChange={(e) => setOrigin(e.target.value)}
-            required
-          />
-        </div>
-        <div className="col-md-4">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Destination"
-            value={destination}
-            onChange={(e) => setDestination(e.target.value)}
-            required
-          />
-        </div>
-        <div className="col-md-2">
-          <input
-            type="date"
-            className="form-control"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-            required
-          />
-        </div>
-        <div className="col-md-2">
-          <button type="submit" className="btn btn-primary w-100">Search</button>
-        </div>
-      </form>
-    </div>
+    <Container className="mt-5">
+      <motion.div
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.7 }}
+      >
+        <h2 className="text-center mb-4">Find Your Perfect Ride</h2>
+        <Form onSubmit={handleSearch}>
+          <Row className="g-3 align-items-center">
+            <Col md={4}>
+              <Form.Control
+                type="text"
+                placeholder="From"
+                value={origin}
+                onChange={(e) => setOrigin(e.target.value)}
+                required
+              />
+            </Col>
+            <Col md={4}>
+              <Form.Control
+                type="text"
+                placeholder="To"
+                value={destination}
+                onChange={(e) => setDestination(e.target.value)}
+                required
+              />
+            </Col>
+            <Col md={2}>
+              <Form.Control
+                type="date"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+                required
+              />
+            </Col>
+            <Col md={2}>
+              <Button type="submit" variant="primary" className="w-100">
+                Search Buses
+              </Button>
+            </Col>
+          </Row>
+        </Form>
+      </motion.div>
+    </Container>
   );
 };
 
