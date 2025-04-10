@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Navbar, Nav, Container } from 'react-bootstrap';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Home from './components/Home';
 import ScheduleList from './components/ScheduleList';
 import SeatSelection from './components/SeatSelection';
@@ -37,6 +39,7 @@ function App() {
             <Route path="/admin" element={<AdminDashboard />} />
           </Routes>
         </motion.div>
+        <ToastContainer position="top-right" autoClose={3000} />
       </div>
     </Router>
   );
