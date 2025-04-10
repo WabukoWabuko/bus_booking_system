@@ -1,0 +1,9 @@
+django
+djangorestframework
+djoser
+django-channels
+redis
+celery
+mysqlclient
+drf-yasg
+qrcode
